@@ -6,30 +6,30 @@ const articleView = {};
 articleView.populateFilters = function() {
     /*
         REVIEW:
-        
+
         To populate our filters we we need to get the author and category data from the article elements on the page.
 
         We'll loop through all the articles, get their author and category data, then add those values to their respective select dropdowns.
 
         Walk through the each loop to make sure you understand what's happening.
-        
+
     */
 
     $('article').each(function() {
         let authorName, category, optionTag;
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
-        // TODO: Refactor all the string concatenation in this function into template literals.
+        // TODOne: Refactor all the string concatenation in this function into template literals.
 
         authorName = $(this).attr('data-js-author');
-        optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
+        optionTag = `<option value="${authorName}">${authorName}</option>`;
 
-        if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
+        if ($(`#author-filter option[value="${authorName}"]`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
         category = $(this).attr('data-js-category');
-        optionTag = '<option value="' + category + '">' + category + '</option>';
-        if ($('#category-filter option[value="' + category + '"]').length === 0) {
+        optionTag = `<option value="${category}">${category}</option>`;
+        if ($(`#category-filter option[value="${category}"]`).length === 0) {
             $('#category-filter').append(optionTag);
         }
 
