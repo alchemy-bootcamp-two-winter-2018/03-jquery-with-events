@@ -53,10 +53,21 @@ articleView.handleAuthorFilter = function() {
 };
 
 articleView.handleCategoryFilter = function() {
-    // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+    // TODOne: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
     // When an option with a value is selected, hide all the articles, then reveal the matches.
     // When the blank (default) option is selected, show all the articles.
     // Be sure to reset the #author-filter while you are at it!
+
+    $('#category-filter').on('change', function() {
+        if ($(this).val()) {
+            $('article').hide();
+            $(`[data-js-category="${($(this).val())}"]`).fadeIn();
+        } else {
+            $('article').fadeIn();
+        }
+        $('#author-filter').val('');
+    });
+
 };
 
 articleView.handleMainNav = function() {
@@ -64,8 +75,18 @@ articleView.handleMainNav = function() {
     // Clicking any .tab element should hide all the .tab-content sections, and then reveal the single .tab-content section that is associated with the clicked .tab element.
     // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
 
+    $('.icon-home').on('click', function() {
+        $('.tab-content').hide();
+        $('#articles').show();
+    });
+
+    $('.icon-address-book').on('click', function() {
+        $('.tab-content').hide();
+        $('#about').show();
+    });
+
     // REVIEW: Now trigger a click on the first .tab element, to set up the page.
-    $('.main-nav .tab:first').click();
+    $('.icon-home').click();
 };
 
 articleView.setTeasers = function() {
@@ -80,3 +101,8 @@ articleView.setTeasers = function() {
 $(document).ready(function() {
 
 });
+
+articleView.populateFilters();
+articleView.handleAuthorFilter();
+articleView.handleCategoryFilter();
+articleView.handleMainNav();
