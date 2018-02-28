@@ -56,7 +56,7 @@ articleView.handleAuthorFilter = function() {
 };
 
 articleView.handleCategoryFilter = function() {
-    // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+    // TODOne: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
     // When an option with a value is selected, hide all the articles, then reveal the matches.
     // When the blank (default) option is selected, show all the articles.
     // Be sure to reset the #author-filter while you are at it!
@@ -77,6 +77,12 @@ articleView.handleMainNav = function() {
     // Clicking any .tab element should hide all the .tab-content sections, and then reveal the single .tab-content section that is associated with the clicked .tab element.
     // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
 
+    $('.main-nav .tab').on('click', function () {
+        $('.tab-content').hide();
+        const dataContent = $(this).attr('data-content');
+        $(`section[id="${dataContent}"]`).show();
+    });
+
     // REVIEW: Now trigger a click on the first .tab element, to set up the page.
     $('.main-nav .tab:first').click();
 };
@@ -94,6 +100,6 @@ $(document).ready(function() {
     articleView.populateFilters();
     articleView.handleAuthorFilter();
     articleView.handleCategoryFilter();
-    // articleView.handleMainNav();
+    articleView.handleMainNav();
     // articleView.setTeasers();
 });
