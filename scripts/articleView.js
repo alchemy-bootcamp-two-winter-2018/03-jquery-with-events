@@ -6,13 +6,13 @@ const articleView = {};
 articleView.populateFilters = function() {
     /*
         REVIEW:
-        
+
         To populate our filters we we need to get the author and category data from the article elements on the page.
 
         We'll loop through all the articles, get their author and category data, then add those values to their respective select dropdowns.
 
         Walk through the each loop to make sure you understand what's happening.
-        
+
     */
 
     $('article').each(function() {
@@ -20,14 +20,14 @@ articleView.populateFilters = function() {
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODOne: Refactor all the string concatenation in this function into template literals.
 
-        authorName = $(this).attr('data-js-author');
+        authorName = $(this).attr('data-js-author'); //eslint-disable-line
         optionTag = `<option value="${authorName}">${authorName}</option>`;
 
         if ($(`#author-filter option[value="${authorName}"]`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
-        category = $(this).attr('data-js-category');
+        category = $(this).attr('data-js-category'); //eslint-disable-line
         optionTag = `<option value="${category}">${category}</option>`;
         if ($(`#category-filter option[value="${category}"]`).length === 0) {
             $('#category-filter').append(optionTag);
@@ -88,7 +88,7 @@ articleView.setTeasers = function() {
     //Using (n+2) as an argument actually hid everything after the first p tag.  To show both first two p-tags we changed it to (n+3), but the pictures were super ugly so we set it back.
 
     $('article a.show-less').hide();
-    // TODO: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
+    // TODOne: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
     // Ideally, we'd attach this as just one event handler on the #articles section, and let it process (in other words... delegate) any .read-on clicks that happen within child nodes.
     $('article').on('click', 'a.read-on', function(){
         $(this).hide();
@@ -103,7 +103,7 @@ articleView.setTeasers = function() {
     });
 };
 
-// TODO: Call all of the above functions, once we are sure the DOM is ready.
+// TODOne: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
     articleView.populateFilters();
     articleView.handleAuthorFilter();
