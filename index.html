@@ -38,6 +38,7 @@
           <li>
             <select id="author-filter">
               <option value="">-- Filter by Authors --</option>
+              <option value="1">-- Filter by Head --</option>
             </select>
           </li>
           <li>
@@ -81,9 +82,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="scripts/blogArticles.js"></script>
   <script src="scripts/article.js"></script>
-  <!-- TODO: Link our new script file in. -->
-
+  <!-- TODOne: Link our new script file in. -->
+  <script src="scripts/articleView.js"></script>
   <!-- COMMENT: Explain the ordering of your script files. -->
-  <!-- PUT YOUR RESPONSE HERE -->
+  <!-- jQuery should load first to establish rules and methods for the use of jQuery in other scripts.  article.js requires the information stored in the object in blogArticles.js to dynamically load them onto the page.  articleView.js should load after article.js, because it will use the articles on the page, and cannot if they have not yet loaded. -->
 </body>
 </html>
