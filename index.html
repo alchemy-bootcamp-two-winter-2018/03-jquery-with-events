@@ -85,6 +85,6 @@
   <script src="scripts/articleView.js"></script>
 
   <!-- COMMENT: Explain the ordering of your script files. -->
-  <!-- PUT YOUR RESPONSE HERE -->
+  <!-- jQuery goes first so all of our files can access it. The blogArticles file comes next because article.js requires the data stored there. articleView manipulates the DOM elements created in the article.js file, so it comes last. -->
 </body>
 </html>
