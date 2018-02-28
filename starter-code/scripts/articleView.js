@@ -40,12 +40,13 @@ articleView.handleAuthorFilter = function() {
     $('#author-filter').on('change', function() {
     // REVIEW: Inside this function, "this" is the element that triggered the event handler function we are defining. "$(this)" is using jQuery to select that element (analogous to event.target that we have seen before), so we can chain jQuery methods onto it.
         if ($(this).val()) {
-            // TODO: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
+            // TODOne: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
             // Use an "attribute selector" to find those articles, and fade them in for the reader.
             $('article').hide();
-            $(`[data-js-author="${($(this).val())}"]`).show();
+            $(`[data-js-author="${($(this).val())}"]`).fadeIn();
         } else {
-            // TODO: If the <select> menu was changed to an option that is blank, we should first show all the articles.
+            // TODOne: If the <select> menu was changed to an option that is blank, we should first show all the articles.
+            $('article').fadeIn();
         }
         $('#category-filter').val('');
     });
