@@ -10,7 +10,7 @@ Lab 03: jQuery Events
 --
 
 ## Submission Instructions
-Follow the submission instructions outlined in our [submit-process repo](https://github.com/acl-301d-fall-2017/submit-process).
+Follow the submission instructions outlined in our [submit-process repo](https://github.com/alchemy-bootcamp-two-winter-2018/submit-process).
 
 ## Resources  
 [jQuery cheatsheet](https://oscarotero.com/jquery/)

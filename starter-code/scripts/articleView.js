@@ -4,34 +4,35 @@
 const articleView = {};
 
 articleView.populateFilters = function() {
+    /*
+        REVIEW:
+        
+        To populate our filters we we need to get the author and category data from the article elements on the page.
+
+        We'll loop through all the articles, get their author and category data, then add those values to their respective select dropdowns.
+
+        Walk through the each loop to make sure you understand what's happening.
+        
+    */
+
     $('article').each(function() {
-    // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         let authorName, category, optionTag;
-        if (!$(this).hasClass('template')) {
-            // REVIEW: We need to take every author name from the page, and make it an option in the Author filter.
-            // To do so, we built an <option> DOM element that we append to the author <select> element.
-            // We started by grabbing the author's name from `this` article element, and then use that bit of text to create the option tag (in a variable named `optionTag`) that we append to the #author-filter select element.
-            authorName = $(this).attr('data-author');
+        // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
+        // TODO: Refactor all the string concatenation in this function into template literals.
 
-            // TODO: Refactor this concatenation using a template literal.
-            optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
-            
-            // TODO: Refactor this concatenation using a template literal.
-            if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
-                $('#author-filter').append(optionTag);
-            }
+        authorName = $(this).attr('data-js-author');
+        optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
 
-            // REVIEW: Similar to the above. Note that we avoid duplicates!
-            // We don't want to append the category name if the <select> already has this category as an option.
-            category = $(this).attr('data-category');
-
-            // TODO: Refactor this concatenation using a template literal.
-            optionTag = '<option value="' + category + '">' + category + '</option>';
-
-            if ($('#category-filter option[value="' + category + '"]').length === 0) {
-                $('#category-filter').append(optionTag);
-            }
+        if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
+            $('#author-filter').append(optionTag);
         }
+
+        category = $(this).attr('data-js-category');
+        optionTag = '<option value="' + category + '">' + category + '</option>';
+        if ($('#category-filter option[value="' + category + '"]').length === 0) {
+            $('#category-filter').append(optionTag);
+        }
+
     });
 };
 
@@ -43,8 +44,7 @@ articleView.handleAuthorFilter = function() {
             // Use an "attribute selector" to find those articles, and fade them in for the reader.
 
         } else {
-            // TODO: If the <select> menu was changed to an option that is blank, we should first show all the articles, except the one article we are using as a template.
-
+            // TODO: If the <select> menu was changed to an option that is blank, we should first show all the articles.
         }
         $('#category-filter').val('');
     });
@@ -53,9 +53,8 @@ articleView.handleAuthorFilter = function() {
 articleView.handleCategoryFilter = function() {
     // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
     // When an option with a value is selected, hide all the articles, then reveal the matches.
-    // When the blank (default) option is selected, show all the articles, except for the template.
+    // When the blank (default) option is selected, show all the articles.
     // Be sure to reset the #author-filter while you are at it!
-
 };
 
 articleView.handleMainNav = function() {
