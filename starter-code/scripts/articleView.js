@@ -3,6 +3,14 @@
 // REVIEW: Configure an object to hold all of our functions for dynamic updates and article-related event handlers.
 const articleView = {};
 
+articleView.init = function() {
+    this.populateFilters();
+//     this.handleAuthorFilters();
+//     this.handleCategoryFilter();
+//     this.handleMainNav();
+//     this.setTeasers();
+};
+
 articleView.populateFilters = function() {
     /*
         REVIEW:
@@ -17,19 +25,19 @@ articleView.populateFilters = function() {
 
     $('article').each(function() {
         let authorName, category, optionTag;
+    
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
-        // TODO: Refactor all the string concatenation in this function into template literals.
+        // TODONE: Refactor all the string concatenation in this function into template literals.
 
         authorName = $(this).attr('data-js-author');
-        optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
-
-        if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
+        optionTag = `<option value='${authorName}'>${authorName}</option>`;
+        if ($(`#author-filter option[value='${authorName}']`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
         category = $(this).attr('data-js-category');
-        optionTag = '<option value="' + category + '">' + category + '</option>';
-        if ($('#category-filter option[value="' + category + '"]').length === 0) {
+        optionTag = `<option value='${category}'>${category}</option>`;
+        if ($(`#category-filter option[value='${category}']`).length === 0) {
             $('#category-filter').append(optionTag);
         }
 
@@ -76,5 +84,6 @@ articleView.setTeasers = function() {
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
+    articleView.init();
 
 });
