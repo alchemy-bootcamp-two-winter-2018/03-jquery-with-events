@@ -15,23 +15,19 @@ articleView.populateFilters = function() {
 
     */
 
+    function populateFilterOptions(article, dataAttr, selectFilterId) {
+        const data = $(article).attr(dataAttr);
+
+        if ($(`${selectFilterId} option[value="${data}"]`).length === 0) {
+            const optionTag = `<option value="${data}">${data}</option>`;
+            $(selectFilterId).append(optionTag);
+        }
+    }
+
     $('article').each(function() {
         // TODOne: Refactor all the string concatenation in this function into template literals.
-
-        const authorName = $(this).attr('data-js-author'); 
-        
-        if ($(`#author-filter option[value="${authorName}"]`).length === 0) {
-            const optionTag = `<option value="${authorName}">${authorName}</option>`;
-            $('#author-filter').append(optionTag);
-        }
-
-        const category = $(this).attr('data-js-category');
-
-        if ($(`#category-filter option[value="${category}"]`).length === 0) {
-            const optionTag = `<option value="${category}">${category}</option>`;
-            $('#category-filter').append(optionTag);
-        }
-
+        populateFilterOptions(this, 'data-js-author', '#author-filter');
+        populateFilterOptions(this, 'data-js-category', '#category-filter');
     });
 };
 
