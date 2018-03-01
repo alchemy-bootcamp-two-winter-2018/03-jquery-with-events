@@ -16,7 +16,7 @@ Article.prototype.toHtml = function () {
     }
     $newArticle.attr('data-js-category', this.category);
     // TODO: Use jQuery to add the author name as an additional data-attribute of the new article. Doing so will allow us to use selectors to target articles based on who wrote them.
-
+    $newArticle.attr('data-js-author', this.author);
     $newArticle.find('.byline a').html(this.author);
     $newArticle.find('.byline a').attr('href', this.authorUrl);
     $newArticle.find('h1:first').html(this.title);
