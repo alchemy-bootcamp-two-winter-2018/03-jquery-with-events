@@ -87,18 +87,17 @@ articleView.handleMainNav = function() {
     // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
 
     $('[data-content = "about"]').on('click', function () {
-        // if($(this).attr('data-content', 'about')) {
-        //     const tabPick = $(this).attr('data-content', 'about');
-        //     debugger;
-            $('.tab-content').hide();
-            $('#about').show();
-            
-            // console.log(tabPick);
 
-        // } else {
-        //     $('tab-content').show();
-        // }
-        // $('#author-filter').val('');
+        $('.tab-content').hide();
+        $('#about').show();
+
+    });
+
+    $('[data-content = "articles"]').on('click', function () {
+
+        $('.tab-content').show();
+        $('#about').hide();
+
     });
 
 
