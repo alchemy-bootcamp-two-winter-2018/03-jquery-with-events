@@ -16,18 +16,18 @@ articleView.populateFilters = function() {
     */
 
     $('article').each(function() {
-        let authorName, category, optionTag;
+        let optionTag;
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODOne: Refactor all the string concatenation in this function into template literals.
 
-        authorName = $(this).attr('data-js-author');
+        const authorName = $(this).attr('data-js-author');
         optionTag = `<option value="${authorName}">${authorName}</option>`;
 
         if ($(`#author-filter option[value="${authorName}"]`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
-        category = $(this).attr('data-js-category');
+        const category = $(this).attr('data-js-category');
         optionTag = `<option value="${category}">${category}</option>`;
         if ($(`#category-filter option[value="${category}"]`).length === 0) {
             $('#category-filter').append(optionTag);
@@ -98,7 +98,15 @@ articleView.setTeasers = function() {
     $('article .read-on').on('click', function () {
         event.preventDefault();
         $(this).hide();
+        $(this).next('a').show();
         $(this).prev().children().show();
+    });
+
+    $('article .read-less').on('click', function () {
+        event.preventDefault();
+        $(this).hide();
+        $(this).prev().show();
+        $(this).parent().find('*:nth-of-type(n+2)').hide();
     });
 };
 
