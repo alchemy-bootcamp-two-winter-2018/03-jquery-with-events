@@ -7,7 +7,8 @@ img {
     width: 100%;
     background-color: #ffe9ad;
     font-size: 1.2em;
-    position: relative;
+    position: fixed;
+    margin-top: -1em;
 }
 
 .site-header a, .site-header a:visited{
@@ -22,7 +23,7 @@ img {
 
 .heading-group-h1{
     padding-left: 10px;
-    padding-top: 15px;
+    padding-top: 1em;
 }
 
 .main-nav ul{
@@ -69,6 +70,19 @@ img {
     text-decoration: none;
     color: inherit;
     font-weight: bold;
+}
+
+.article-body:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+img {
+    box-shadow: 3px 3px;
+    max-height: 15em;
+    margin: 1em;
+    padding: 0;
 }
 
 @media screen and (min-width: 640px) {
