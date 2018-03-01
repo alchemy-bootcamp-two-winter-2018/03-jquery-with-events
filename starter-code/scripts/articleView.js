@@ -103,16 +103,16 @@ articleView.setTeasers = function() {
     $('.article-body *:nth-of-type(n+2)').hide();
     $('#articles .read-on').on('click', function() {
         event.preventDefault();
-        $(this).siblings('.article-body').children().show();
-        $(this).text(($(this).text() == 'Read less') ? 'Read on' : 'Read less');
+        if($(this).text() === 'Read on') {
+            $(this).siblings('.article-body').children().show();
+            $(this).text('Read less');
+            } else if ($(this).text() === 'Read less') {
+                $(this).siblings('.article-body').children('*:nth-of-type(n+2)').hide();
+                $(this).text('Read on');
+            }
     });
-    $('#articles .read-on').on('click', function() {
-        event.preventDefault();
-        if ($(this).text() == 'Read less') {
-            $('.article-body *:nth-of-type(n+2)').hide();  
-        }
-    });
-    // TODO: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
+
+    // TODONE GOD DAMN IT!: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
     // Ideally, we'd attach this as just one event handler on the #articles section, and let it process (in other words... delegate) any .read-on clicks that happen within child nodes.
 };
 
