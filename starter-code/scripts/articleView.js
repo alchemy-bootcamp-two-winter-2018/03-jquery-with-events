@@ -103,8 +103,9 @@ articleView.setTeasers = function() {
     $('.article-body *:nth-of-type(n+2)').hide();
     $('#articles .read-on').on('click', function() {
         event.preventDefault();
-        const now = $('.article-body *:nth-of-type(n+2)').show();
-
+        const now = $('.article-body *:nth-of-type(n+2)');
+        debugger;
+        $(this).parent().fadeIn();
         $(this).hide();
 
     });
