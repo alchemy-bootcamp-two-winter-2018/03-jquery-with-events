@@ -14,3 +14,12 @@ ul {
     align-items: flex-end;
     justify-content: flex-start;
 }
+
+.teaser-toggle {
+    display: block;
+    margin-top: 1rem;
+}
+
+#filters {
+    margin-top: 2rem;
+}

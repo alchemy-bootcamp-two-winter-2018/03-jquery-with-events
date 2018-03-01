@@ -6,13 +6,13 @@ const articleView = {};
 articleView.populateFilters = function() {
     /*
         REVIEW:
-        
+
         To populate our filters we we need to get the author and category data from the article elements on the page.
 
         We'll loop through all the articles, get their author and category data, then add those values to their respective select dropdowns.
 
         Walk through the each loop to make sure you understand what's happening.
-        
+
     */
 
     $('article').each(function() {
@@ -20,14 +20,14 @@ articleView.populateFilters = function() {
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODOne: Refactor all the string concatenation in this function into template literals.
 
-        authorName = $(this).attr('data-js-author');
+        authorName = $(this).attr('data-js-author'); // eslint-disable-line
         optionTag = `<option value="${authorName}">${authorName}</option>`;
 
         if ($(`#author-filter option[value="${authorName}"]`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
-        category = $(this).attr('data-js-category');
+        category = $(this).attr('data-js-category'); // eslint-disable-line
         optionTag = `<option value="${category}">${category}</option>`;
         if ($(`#category-filter option[value="${category}"]`).length === 0) {
             $('#category-filter').append(optionTag);
@@ -45,11 +45,11 @@ articleView.handleAuthorFilter = function() {
             const authorName = $(this).val();
             $('article').hide();
             $(`article[data-js-author="${authorName}"]`).fadeIn();
-            
+
         } else {
             // TODOne: If the <select> menu was changed to an option that is blank, we should first show all the articles.
             $('article').show();
-            
+
         }
         $('#category-filter').val('');
     });
