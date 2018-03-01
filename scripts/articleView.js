@@ -16,20 +16,19 @@ articleView.populateFilters = function() {
     */
 
     $('article').each(function() {
-        let authorName, category, optionTag;
-        // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODOne: Refactor all the string concatenation in this function into template literals.
 
-        authorName = $(this).attr('data-js-author'); // eslint-disable-line
-        optionTag = `<option value="${authorName}">${authorName}</option>`;
-
+        const authorName = $(this).attr('data-js-author'); 
+        
         if ($(`#author-filter option[value="${authorName}"]`).length === 0) {
+            const optionTag = `<option value="${authorName}">${authorName}</option>`;
             $('#author-filter').append(optionTag);
         }
 
-        category = $(this).attr('data-js-category'); // eslint-disable-line
-        optionTag = `<option value="${category}">${category}</option>`;
+        const category = $(this).attr('data-js-category');
+
         if ($(`#category-filter option[value="${category}"]`).length === 0) {
+            const optionTag = `<option value="${category}">${category}</option>`;
             $('#category-filter').append(optionTag);
         }
 
