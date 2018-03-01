@@ -6,7 +6,7 @@ const articleView = {};
 articleView.init = function() {
     this.populateFilters();
     this.handleAuthorFilters();
-//     this.handleCategoryFilter();
+    this.handleCategoryFilter();
 //     this.handleMainNav();
 //     this.setTeasers();
 };
@@ -14,18 +14,18 @@ articleView.init = function() {
 articleView.populateFilters = function() {
     /*
         REVIEW:
-        
+
         To populate our filters we we need to get the author and category data from the article elements on the page.
 
         We'll loop through all the articles, get their author and category data, then add those values to their respective select dropdowns.
 
         Walk through the each loop to make sure you understand what's happening.
-        
+
     */
 
     $('article').each(function() {
         let authorName, category, optionTag;
-    
+
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODONE: Refactor all the string concatenation in this function into template literals.
 
@@ -51,23 +51,33 @@ articleView.handleAuthorFilters = function() {
             const what = $(this).val();
             $('article').hide();
             $(`article[data-js-author= '${what}']`).fadeIn();
-         
-            // TODO: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
+
+            // TODONE: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
             // Use an "attribute selector" to find those articles, and fade them in for the reader.
-            console.log($(this).val());
         } else {
-            console.log('else');
-            // TODO: If the <select> menu was changed to an option that is blank, we should first show all the articles.
+            $('article').fadeIn();
+            // TODONE: If the <select> menu was changed to an option that is blank, we should first show all the articles.
         }
         $('#category-filter').val('');
     });
 };
 
 articleView.handleCategoryFilter = function() {
-    // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+    $('#category-filter').on('change', function() {
+    // TODONE: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+        if ($(this).val()) {
+            const category = $(this).val();
+            $('article').hide();
+            $(`article[data-js-category='${category}']`).fadeIn();
+
+        }else{
+            $('article').fadeIn();
+        }
+        $('#author-filter').val('');
     // When an option with a value is selected, hide all the articles, then reveal the matches.
     // When the blank (default) option is selected, show all the articles.
     // Be sure to reset the #author-filter while you are at it!
+    });
 };
 
 articleView.handleMainNav = function() {
@@ -89,7 +99,7 @@ articleView.setTeasers = function() {
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
-    
+
 });
 
 articleView.init();
