@@ -105,7 +105,7 @@ articleView.setTeasers = function() {
         event.preventDefault();
         const now = $('.article-body *:nth-of-type(n+2)');
         debugger;
-        $(this).parent().fadeIn();
+        $(this).siblings('.article-body *:nth-of-type(n+2)').fadeIn();
         $(this).hide();
 
     });
