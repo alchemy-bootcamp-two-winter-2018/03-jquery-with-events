@@ -55,6 +55,8 @@ articleView.handleAuthorFilter = function() {
 
             $('article').show();
         }
+        $('.article-body *:nth-of-type(n+2)').hide();
+        $('.read-on').show();
         $('#category-filter').val('');
     });
 };
@@ -72,6 +74,8 @@ articleView.handleCategoryFilter = function() {
         } else {
             $('article').show();
         }
+        $('.article-body *:nth-of-type(n+2)').hide();
+        $('.read-on').show();
         $('#author-filter').val('');
     });
     // When an option with a value is selected, hide all the articles, then reveal the matches.
@@ -82,7 +86,7 @@ articleView.handleCategoryFilter = function() {
 };
 
 articleView.handleMainNav = function() {
-    // TODO: Add an event handler to .main-nav elements that will power the Tabs feature.
+    // TODOne: Add an event handler to .main-nav elements that will power the Tabs feature.
     // Clicking any .tab element should hide all the .tab-content sections, and then reveal the single .tab-content section that is associated with the clicked .tab element.
     // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
 
@@ -95,8 +99,11 @@ articleView.handleMainNav = function() {
 
     $('[data-content = "articles"]').on('click', function () {
 
+        
         $('.tab-content').show();
         $('#about').hide();
+       
+     
 
     });
 
@@ -110,6 +117,10 @@ articleView.setTeasers = function() {
     $('.article-body *:nth-of-type(n+2)').hide();
 
     // TODO: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
+    $('.read-on').on('click', function () {
+        $('.article-body *:nth-of-type(n+2)').show();
+        $('.read-on').hide();
+    });
     // Ideally, we'd attach this as just one event handler on the #articles section, and let it process (in other words... delegate) any .read-on clicks that happen within child nodes.
 };
 
@@ -118,6 +129,6 @@ $(document).ready(function() {
     articleView.populateFilters();
     articleView.handleAuthorFilter();
     articleView.handleCategoryFilter();
-    articleView.handleMainNav();
     articleView.setTeasers();
+    articleView.handleMainNav();
 });
