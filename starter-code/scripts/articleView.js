@@ -20,28 +20,15 @@ articleView.populateFilters = function() {
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODOne: Refactor all the string concatenation in this function into template literals.
 
-        // authorName = $(this).attr('data-js-author');
-        // optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
-
         authorName = $(this).attr('data-js-author');
-        optionTag = `<option value=" ${authorName}" >${authorName}</option>`;
-
-        // if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
-        //     $('#author-filter').append(optionTag);
-        // }
+        optionTag = `<option value="${authorName}" >${authorName}</option>`;
 
         if ($(`#author-filter option[value=" ${authorName} "]`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
-        // category = $(this).attr('data-js-category');
-        // optionTag = '<option value="' + category + '">' + category + '</option>';
-        // if ($('#category-filter option[value="' + category + '"]').length === 0) {
-        //     $('#category-filter').append(optionTag);
-        // }
-
         category = $(this).attr('data-js-category');
-        optionTag = `<option value=" ${category} ">${category}</option>`;
+        optionTag = `<option value="${category}">${category}</option>`;
         if ($(`#category-filter option[value=" ${category} "]`).length === 0) {
             $('#category-filter').append(optionTag);
         }
@@ -53,24 +40,44 @@ articleView.handleAuthorFilter = function() {
     $('#author-filter').on('change', function() {
     // REVIEW: Inside this function, "this" is the element that triggered the event handler function we are defining. "$(this)" is using jQuery to select that element (analogous to event.target that we have seen before), so we can chain jQuery methods onto it.
         if ($(this).val()) {
-            // TODO: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
+            // TODOne: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
             // Use an "attribute selector" to find those articles, and fade them in for the reader.
-            
-            $('#articles article').not($(this).val()).hide();
+
+            const authorPick = $(this).val();
+
+            $('article').hide();
+            $(`article[data-js-author ='${authorPick}']`).show();
             console.log($(this).val());
             
         } else {
-            // TODO: If the <select> menu was changed to an option that is blank, we should first show all the articles.
+            // TODOne: If the <select> menu was changed to an option that is blank, we should first show all the articles.
             // $(this).attr('data.js.author').show();
+
+            $('article').show();
         }
         $('#category-filter').val('');
     });
 };
 
 articleView.handleCategoryFilter = function() {
-    // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+    // TODOne: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+    $('#category-filter').on('change', function() {
+        
+        if ($(this).val()) {
+            const categoryPick = $(this).val();
+
+            $('article').hide();
+            $(`article[data-js-category = '${categoryPick}']`).show();
+
+        } else {
+            $('article').show();
+        }
+        $('#author-filter').val('');
+    });
     // When an option with a value is selected, hide all the articles, then reveal the matches.
+
     // When the blank (default) option is selected, show all the articles.
+
     // Be sure to reset the #author-filter while you are at it!
 };
 
@@ -95,5 +102,6 @@ articleView.setTeasers = function() {
 $(document).ready(function() {
     articleView.populateFilters();
     articleView.handleAuthorFilter();
+    articleView.handleCategoryFilter();
 
 });
