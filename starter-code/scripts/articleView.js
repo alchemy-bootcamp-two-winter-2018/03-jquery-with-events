@@ -102,7 +102,9 @@ articleView.handleMainNav = function() {
         
         $('.tab-content').show();
         $('#about').hide();
-       
+        $('#author-filter').val('');
+        $('#category-filter').val('');
+        
      
 
     });
