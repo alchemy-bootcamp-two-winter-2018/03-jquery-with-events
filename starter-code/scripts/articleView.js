@@ -29,13 +29,13 @@ articleView.populateFilters = function() {
         // REVIEW: We can declare several variables at once and assign their values later when using let. Keep in mind that we cannot do this with const.
         // TODONE: Refactor all the string concatenation in this function into template literals.
 
-        authorName = $(this).attr('data-js-author');
+        authorName = $(this).attr('data-js-author'); // eslint-disable-line
         optionTag = `<option value='${authorName}'>${authorName}</option>`;
         if ($(`#author-filter option[value='${authorName}']`).length === 0) {
             $('#author-filter').append(optionTag);
         }
 
-        category = $(this).attr('data-js-category');
+        category = $(this).attr('data-js-category'); // eslint-disable-line
         optionTag = `<option value='${category}'>${category}</option>`;
         if ($(`#category-filter option[value='${category}']`).length === 0) {
             $('#category-filter').append(optionTag);
@@ -90,12 +90,12 @@ articleView.handleMainNav = function() {
         $('#articles').fadeIn();
 
     });
-    
+
     $('.main-nav .tab:nth-child(2)').on('click', function() {
         $('#articles').hide();
         $('#about').fadeIn();
     });
-    
+
     $('.main-nav .tab:first').click();
 };
 
@@ -107,10 +107,10 @@ articleView.setTeasers = function() {
         if($(this).text() === 'Read on') {
             $(this).siblings('.article-body').children().show();
             $(this).text('Read less');
-            } else if ($(this).text() === 'Read less') {
-                $(this).siblings('.article-body').children('*:nth-of-type(n+2)').hide();
-                $(this).text('Read on');
-            }
+        } else if ($(this).text() === 'Read less') {
+            $(this).siblings('.article-body').children('*:nth-of-type(n+2)').hide();
+            $(this).text('Read on');
+        }
     });
 
     // TODONE GOD DAMN IT!: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
