@@ -86,16 +86,17 @@ articleView.handleMainNav = function() {
     // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
     // REVIEW: Now trigger a click on the first .tab element, to set up the page.
     $('.main-nav .tab:first').on('click', function() {
-        $('.tab-content:last-child').hide();
+        $('.tab-content:nth-child(2)').hide();
         $('#articles').fadeIn();
 
     });
-
+    
     $('.main-nav .tab:nth-child(2)').on('click', function() {
         $('#articles').hide();
         $('#about').fadeIn();
     });
-
+    
+    $('.main-nav .tab:first').click();
 };
 
 articleView.setTeasers = function() {
